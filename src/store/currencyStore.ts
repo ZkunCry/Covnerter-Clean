@@ -1,6 +1,5 @@
 import { create } from "zustand";
-import { type RatesResponse } from "../../domain/entities/CurrencyRate";
-import { shallow } from "zustand/shallow";
+import { type RatesResponse } from "../types/CurrencyRate";
 
 interface CurrencyState {
   rates: RatesResponse | null;

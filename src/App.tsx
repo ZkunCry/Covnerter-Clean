@@ -1,18 +1,14 @@
 import { useEffect } from "react";
-import { CurrencyRepositoryImpl } from "./data/repositories/CurrencyRepositoryImpl";
-import { useCurrencyStore } from "./data/store/currencyStore";
-import { FetchRates } from "./domain/usecases/FetchRates";
-import { Route, Routes } from "react-router-dom";
-import Converter from "./presentation/pages/Converter";
-import CurrencySelection from "./presentation/pages/CurrencySelection";
-const fetchRate = new FetchRates(new CurrencyRepositoryImpl());
-function App() {
-  const setRates = useCurrencyStore((state) => state.setRates);
 
+import { CurrencyServices } from "./services/CurrencyService";
+import { Route, Routes } from "react-router-dom";
+import Converter from "./pages/Converter";
+import CurrencySelection from "./pages/CurrencySelection";
+
+function App() {
   useEffect(() => {
     (async () => {
-      const rates = await fetchRate.execute();
-      setRates(rates);
+      await CurrencyServices.fetchRates();
     })();
   }, []);
 
@@ -20,7 +16,7 @@ function App() {
     <div className="flex flex-col min-h-dvh items-center ">
       <Routes>
         <Route path="/" element={<Converter />} />
-        <Route path="/select/:type" element={<CurrencySelection />} />
+        <Route path="/select/" element={<CurrencySelection />} />
       </Routes>
     </div>
   );

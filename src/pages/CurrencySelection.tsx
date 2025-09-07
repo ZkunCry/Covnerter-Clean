@@ -1,7 +1,7 @@
-import Back from "../../assets/back.svg";
+import Back from "../assets/back.svg";
 import { Link } from "react-router-dom";
-import CurrencySearch from "../components/SearchCurrency";
 import CurrencyCard from "../components/CurrencyCard";
+import CurrencySearch from "../components/SearchCurrency";
 export default function CurrencySelection() {
   return (
     <div className="w-full flex flex-col gap-[2px]">
