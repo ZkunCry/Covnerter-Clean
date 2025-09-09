@@ -21,13 +21,21 @@ export const useCurrencySelectionStore = create<CurrencySelectionState>()(
       toCurrency: "USD",
       activeSelection: "from",
       actions: {
-        setFromCurrency: (currency) => set({ fromCurrency: currency }),
-        setToCurrency: (currency) => set({ toCurrency: currency }),
-        setSelection: (selection) => set(selection),
-        setActiveSelection: (selection) => set({ activeSelection: selection }),
+        setFromCurrency: (currency: string) => set({ fromCurrency: currency }),
+        setToCurrency: (currency: string) => set({ toCurrency: currency }),
+        setSelection: (selection: CurrencySelection) => set(selection),
+        setActiveSelection: (selection: "from" | "to") =>
+          set({ activeSelection: selection }),
       },
     }),
-    { name: "currency-selection-store" }
+    {
+      name: "currency-selection-store",
+      partialize: (state) => ({
+        fromCurrency: state.fromCurrency,
+        toCurrency: state.toCurrency,
+        activeSelection: state.activeSelection,
+      }),
+    }
   )
 );
 //Selectors

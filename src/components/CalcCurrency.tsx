@@ -21,7 +21,8 @@ const CalcCurrency = ({
   const toCurrency = useToCurrency();
   const fromCurrency = useFromCurrency();
   const rates = useGetValutes();
-  const { setFromCurrency, setToCurrency } = useCurrencyActions();
+  const { setFromCurrency, setToCurrency, setActiveSelection } =
+    useCurrencyActions();
   const fromValue =
     activeBlock === "from"
       ? inputValue || "0"
@@ -31,6 +32,7 @@ const CalcCurrency = ({
     activeBlock === "to"
       ? inputValue || "0"
       : CurrencyServices.calculate(inputValue, fromCurrency, toCurrency, rates);
+  console.log("From: ", fromCurrency, "To: ", toCurrency);
   return (
     <div className="flex flex-col gap-[2.5rem]">
       {/* From block */}
@@ -40,7 +42,10 @@ const CalcCurrency = ({
         <Link
           to="/select"
           className="cursor-pointer flex flex-col items-start relative title p-2 rounded-lg transition-all"
-          onClick={() => setFromCurrency(fromCurrency)}
+          onClick={() => {
+            setActiveSelection("from");
+            setFromCurrency(fromCurrency);
+          }}
         >
           <h2 className="text-[1.55rem] font-medium leading-[100%]">
             {fromCurrency}
@@ -68,7 +73,10 @@ const CalcCurrency = ({
         <Link
           to="/select"
           className="cursor-pointer flex flex-col items-start relative title p-2 rounded-lg"
-          onClick={() => setToCurrency(toCurrency)}
+          onClick={() => {
+            setActiveSelection("to");
+            setToCurrency(toCurrency);
+          }}
         >
           <h2 className="text-[1.55rem] font-medium leading-[100%]">
             {toCurrency}
