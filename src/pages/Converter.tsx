@@ -1,8 +1,9 @@
-import CalcCurrency from "../components/CalcCurrency";
-import Keypad from "../components/KeyPad";
 import { useState } from "react";
-import { useGetValutes } from "../store/currencyStore";
+import { useGetValutes } from "@/store/currencyStore";
+import CalcCurrency from "@/components/CalcCurrency";
+import Keypad from "@/components/KeyPad";
 import { LoaderCircle } from "lucide-react";
+
 const Converter = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [activeBlock, setActiveBlock] = useState<"from" | "to">("from");

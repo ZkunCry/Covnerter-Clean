@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { type RatesResponse } from "../types/CurrencyRate";
+import type { RatesResponse } from "@/types/CurrencyRate";
 
 interface CurrencyState {
   rates: RatesResponse | null;

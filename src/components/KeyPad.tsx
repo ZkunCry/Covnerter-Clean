@@ -1,7 +1,7 @@
 import React from "react";
-import Key from "./Key";
-import Delete from "../assets/delete.png";
-import { keys } from "../config/keys";
+import Key from "@/components/Key";
+import Delete from "@/assets/delete.png";
+import { keys } from "@/config/keys";
 
 interface KeypadProps {
   onKeyPress: (value: string) => void;

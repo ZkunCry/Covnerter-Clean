@@ -1,12 +1,9 @@
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import {
-  useFromCurrency,
-  useToCurrency,
-} from "../store/currencySelectionStore";
-import { useGetValutes } from "../store/currencyStore";
-import { useCurrencyActions } from "../store/currencySelectionStore";
-import { CurrencyServices } from "../services/CurrencyService";
+import { useFromCurrency, useToCurrency } from "@/store/currencySelectionStore";
+import { useGetValutes } from "@/store/currencyStore";
+import { useCurrencyActions } from "@/store/currencySelectionStore";
+import { CurrencyServices } from "@/services/CurrencyService";
 interface CalcCurrencyProps {
   inputValue: string;
   activeBlock: "from" | "to";
@@ -50,11 +47,7 @@ const CalcCurrency = ({
           <h2 className="text-[1.55rem] font-medium leading-[100%]">
             {fromCurrency}
           </h2>
-          <span>
-            {rates && rates[fromCurrency]
-              ? rates[fromCurrency].Name
-              : "Выберите валюту"}
-          </span>
+          <span>{rates[fromCurrency].Name}</span>
           <ChevronRight className="absolute right-0 top-[50%] translate-y-[-50%]" />
         </Link>
         <button
@@ -81,11 +74,7 @@ const CalcCurrency = ({
           <h2 className="text-[1.55rem] font-medium leading-[100%]">
             {toCurrency}
           </h2>
-          <span>
-            {rates && rates[toCurrency]
-              ? rates[toCurrency].Name
-              : "Выберите валюту"}
-          </span>
+          <span>{rates[fromCurrency].Name}</span>
           <ChevronRight className="absolute right-0 top-[50%] translate-y-[-50%]" />
         </Link>
         <button

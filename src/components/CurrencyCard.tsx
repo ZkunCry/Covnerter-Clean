@@ -1,28 +1,35 @@
 import { LoaderCircle } from "lucide-react";
-import { useGetValutes } from "../store/currencyStore";
+import { useGetValutes } from "@/store/currencyStore";
 import {
   useActiveSelection,
   useCurrencyActions,
-} from "../store/currencySelectionStore";
-import Select from "../assets/done.svg";
-import {
   useFromCurrency,
   useToCurrency,
-} from "../store/currencySelectionStore";
+} from "@/store/currencySelectionStore";
+import { useSearchString } from "@/store/useSearch";
+import Select from "@/assets/done.svg";
+
 const CurrencyCard = () => {
   const valutes = useGetValutes();
   const { setFromCurrency, setToCurrency } = useCurrencyActions();
   const fromCurrency = useFromCurrency();
   const toCurrency = useToCurrency();
   const activeSelection = useActiveSelection();
+  const searchString = useSearchString();
   if (!valutes)
     return <LoaderCircle size={30} className="self-center animate-spin" />;
-
   const arrValutes = Object.values(valutes || {});
-  console.log(valutes);
+  const filteredValutes = !searchString
+    ? arrValutes
+    : arrValutes.filter((valute) => {
+        return valute.CharCode.toLowerCase().includes(
+          searchString.toLowerCase()
+        );
+      });
+  console.log("fsfd");
   return (
     <div className="flex flex-col gap-[0.75rem]">
-      {arrValutes.map((valute) => {
+      {filteredValutes.map((valute) => {
         return (
           <button
             key={valute.ID}

@@ -1,7 +1,7 @@
-import { API_URL } from "../config/api";
-import { type CurrencyRate, type RatesResponse } from "../types/CurrencyRate";
-import { axiosInstance } from "../config/api";
-import { useCurrencyStore } from "../store/currencyStore";
+import { axiosInstance, API_URL } from "@/config/api";
+import { type CurrencyRate, type RatesResponse } from "@/types/CurrencyRate";
+import { useCurrencyStore } from "@/store/currencyStore";
+
 export const CurrencyServices = {
   async fetchRates(): Promise<RatesResponse> {
     const response = await axiosInstance.get<RatesResponse>(API_URL);
@@ -12,6 +12,7 @@ export const CurrencyServices = {
       Nominal: 1,
       NumCode: "643",
       Value: 1.0,
+      Previous: 1.0,
     };
     useCurrencyStore.getState().setRates(response.data);
     return response.data;
@@ -30,7 +31,7 @@ export const CurrencyServices = {
     const toRate = rates[to].Value / rates[to].Nominal;
     const result = (amountNumber * fromRate) / toRate;
     if (result == null || Number.isNaN(result)) return "";
-    console.log(`Конвертация: ${amount} ${from} -> ${result} ${to}`);
+    console.log(`Конвертация: ${amount} ${from} в ${result} ${to}`);
     return result.toFixed(5);
   },
 };

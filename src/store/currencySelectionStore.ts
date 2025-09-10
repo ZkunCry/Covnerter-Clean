@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { type CurrencySelection } from "../types/CurrencySelection";
+import { type CurrencySelection } from "@/types/CurrencySelection";
 
 export interface CurrencySelectionState {
   fromCurrency: string;
@@ -30,11 +30,11 @@ export const useCurrencySelectionStore = create<CurrencySelectionState>()(
     }),
     {
       name: "currency-selection-store",
-      partialize: (state) => ({
-        fromCurrency: state.fromCurrency,
-        toCurrency: state.toCurrency,
-        activeSelection: state.activeSelection,
-      }),
+      // partialize: (state) => ({
+      //   fromCurrency: state.fromCurrency,
+      //   toCurrency: state.toCurrency,
+      //   activeSelection: state.activeSelection,
+      // }),
     }
   )
 );

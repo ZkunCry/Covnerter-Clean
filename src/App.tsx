@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-
-import { CurrencyServices } from "./services/CurrencyService";
 import { Route, Routes } from "react-router-dom";
-import Converter from "./pages/Converter";
-import CurrencySelection from "./pages/CurrencySelection";
+import { CurrencyServices } from "@/services/CurrencyService";
+import Converter from "@/pages/Converter";
+import CurrencySelection from "@/pages/CurrencySelection";
 
 function App() {
   useEffect(() => {
